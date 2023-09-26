@@ -48,6 +48,9 @@ try {
 
 <body>
 
+    <h1>Navbar</h1>
+    <!-- TODO: navbar és loginrendszer elkészítése -->
+
     <div class="container">
         <div class="row mt-4 mb-2">
             <div class="col-2"></div>
