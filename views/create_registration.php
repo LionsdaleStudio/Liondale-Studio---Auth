@@ -36,7 +36,7 @@ try {
             <div class="card-body text-center">
                 <h4 class="card-title">Registration form</h4>
                 <!-- Form kezdés -->
-                <form action="controllers/register.php" method="POST">
+                <form action="../controllers/register.php" method="POST">
                     <!-- Floating label input, placeholder kötelező -->
                     <div class="form-floating mb-3">
                         <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com">

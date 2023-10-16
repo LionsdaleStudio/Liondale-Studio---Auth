@@ -1,3 +1,8 @@
+<?php
+session_name("Lion2023-WebApp");
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="hu">
 
@@ -60,17 +65,30 @@
                             </div>
                         </li>
                     </ul>
-                    <form class="mt-2">
+
+                    <?php
+
+                    if (isset($_SESSION['user']) == false) {
+                        echo ' <!-- Login form -->
+                    <form class="mt-2" action="../controllers/login.php" method="POST">
                         <div class="row m-1">
                             <input type="text" name="username" class="form-input mb-2" placeholder="Username">
                         </div>
                         <div class="row m-1">
-                            <input type="text" name="Password" class="form-input mb-2" placeholder="Password">
+                            <input type="text" name="password" class="form-input mb-2" placeholder="Password">
                         </div>
                         <div class="row m-1">
-                            <button class="btn btn-outline-success" type="submit">Login</button>
+                            <button class="btn btn-outline-success" type="submit" name="submit">Login</button>
                         </div>
-                    </form>
+                    </form>';
+                    } else {
+                        echo '<form class="mt-2" action="../controllers/logout.php" method="POST">';
+                        echo '<div class="row m-1">';
+                        echo '<button class="btn btn-outline-danger" type="submit" name="submit">Logout</button>';
+                        echo '</div>';
+                        echo '</form>';
+                    }
+                    ?>
                 </div>
             </div>
         </div>
