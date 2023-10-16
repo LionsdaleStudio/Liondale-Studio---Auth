@@ -63,7 +63,7 @@ if (isset($_POST['submit'])) {
         !$lowercase ||
         !$number ||
         !$specialChars ||
-        strlen($password) < 8 ||
+        strlen($password) >= 8 ||
         $password !== $passwordConfirm
     ) {
         date_default_timezone_set('Europe/Budapest');
