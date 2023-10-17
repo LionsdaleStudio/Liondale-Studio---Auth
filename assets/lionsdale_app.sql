@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Okt 16. 09:35
+-- Létrehozás ideje: 2023. Okt 17. 13:50
 -- Kiszolgáló verziója: 10.4.27-MariaDB
 -- PHP verzió: 8.2.0
 
@@ -45,7 +45,8 @@ CREATE TABLE `addresses` (
 
 INSERT INTO `addresses` (`id`, `country_id`, `postal`, `street`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (2, 4, '1234', 'Juhu', '2023-09-25 01:25:51', NULL, NULL),
-(3, 1, '1234', '21 Jump', '2023-09-26 09:26:31', NULL, NULL);
+(3, 1, '1234', '21 Jump', '2023-09-26 09:26:31', NULL, NULL),
+(4, 101, '1074', 'Rákóczi út 82', '2023-10-16 01:29:39', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -479,6 +480,33 @@ INSERT INTO `languages` (`id`, `language_code`, `language_name`) VALUES
 (140, 'yi', 'Yiddish'),
 (141, 'yo', 'Yoruba - Èdè Yorùbá'),
 (142, 'zu', 'Zulu - isiZulu');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `price` double(9,2) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `picture` varchar(255) DEFAULT 'placeholder.png',
+  `type` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `price`, `description`, `picture`, `type`) VALUES
+(1, 'Obi-Wan Kenobi', 50.99, 'The most powerful jedi ever', 'placeholder.png', 'Funko'),
+(2, 'Anakin Skywalker', 40.99, 'Didn\'t have the high-ground', 'placeholder.png', 'Funko'),
+(3, 'Black', 10.00, 'Strong like a big black man', 'placeholder.png', 'Coffee'),
+(4, 'Vanilla', 9.99, 'Strong like a little white kid', 'placeholder.png', 'Coffee'),
+(5, 'Csaba', 499.99, 'Hightech Regex Champion', 'placeholder.png', 'Human'),
+(6, 'Csabi', 349.99, 'Lives like a remete', 'placeholder.png', 'Human');
 
 -- --------------------------------------------------------
 
@@ -5490,10 +5518,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `phone`, `subscriber`, `sex_id`, `address_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(10, 'r', 'Asd123!', 'rick@wick.hu', '(11) 111-1111', 0, 3, 2, '2023-09-25 01:25:51', NULL, NULL),
-(11, 'rrr', 'Asd123!', 'rick@wick.huu', '(11) 111-1111', 0, 3, 2, '2023-09-25 01:45:50', NULL, NULL),
-(13, 'asdasdasdasdd', 'Asd123!', 'rick@wick.huuuuuuuuu', '(11) 111-1111', 0, 3, 3, '2023-09-26 09:26:48', NULL, NULL),
-(14, 'asd234', '$2y$10$p1Od0/77Nd3i57CxwXqiIuqUD2O7eDP380GzdxwN4YwGvrirK3Fv6', 'rick@wick.hu2', '(12) 324-5336', 0, 3, 3, '2023-09-26 10:18:29', NULL, NULL);
+(16, 'Rick', '$2y$10$qmQsQMeJYkjp7h5pyGSMH.fVDaQrhjxjuET6jHcAQKaOQFF4R.HdW', 'rick@wick.hu', '(90) 123-4567', 0, 3, 4, '2023-10-16 01:29:39', NULL, NULL);
 
 --
 -- Indexek a kiírt táblákhoz
@@ -5516,6 +5541,13 @@ ALTER TABLE `countries`
 --
 ALTER TABLE `languages`
   ADD PRIMARY KEY (`id`);
+
+--
+-- A tábla indexei `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
 
 --
 -- A tábla indexei `sexes`
@@ -5543,7 +5575,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT a táblához `addresses`
 --
 ALTER TABLE `addresses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT a táblához `countries`
@@ -5556,6 +5588,12 @@ ALTER TABLE `countries`
 --
 ALTER TABLE `languages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
+
+--
+-- AUTO_INCREMENT a táblához `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT a táblához `sexes`
@@ -5573,7 +5611,7 @@ ALTER TABLE `states`
 -- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

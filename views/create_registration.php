@@ -39,19 +39,19 @@ try {
                 <form action="../controllers/register.php" method="POST" data-parsley-validate id="regForm">
                     <!-- Floating label input, placeholder kötelező -->
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" data-parsley-type="email" required>
                         <label for="email">Email address</label>
                     </div>
                     <!-- Floating label input, placeholder kötelező -->
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" name="username" id="username"
-                            placeholder="name@example.com" data-parsley-minlength="10">
+                            placeholder="name@example.com" data-parsley-minlength="3" required>
                         <label for="username">Username</label>
                     </div>
                     <!-- Password with hide and seen icon -->
                     <div class="pwd mb-3">
                         <input type="password" class="form-control" name="password" id="password"
-                            placeholder="Password">
+                            placeholder="Password" required data-parsley-minlength="8" data-parsley-pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\-?_!#@.$ß×¤÷&+/%]).*">
                         <span class="passwordIconHolder">
                             <i class="passwordIcon" id="passwordIcon" onclick="showPassword()"><i class="fa-solid fa-eye"></i></i>
                         </span>
@@ -59,7 +59,7 @@ try {
                     <!-- Password confirm with hide and seen icon -->
                     <div class="pwd mb-3">
                         <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm"
-                            placeholder="Password Confirm">
+                            placeholder="Password Confirm" required data-parsley-equalto="#password" data-parsley-equalto-message="A két jelszónak egyeznie kell.">
                         <span class="passwordIconHolder">
                             <i class="passwordIcon" id="passwordIcon" onclick="showPasswordConfirm()"><i class="fa-solid fa-eye"></i></i>
                         </span>
@@ -89,7 +89,7 @@ try {
                     <!-- Floating label input, placeholder kötelező -->
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" name="postal" id="postal"
-                            placeholder="name@example.com">
+                            placeholder="name@example.com" data-parsley-type="number" data-parsley-minlength="4">
                         <label for="postal">Postal code</label>
                     </div>
                     <!-- Floating label input, placeholder kötelező -->
