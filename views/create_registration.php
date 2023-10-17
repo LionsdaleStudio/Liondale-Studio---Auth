@@ -36,16 +36,16 @@ try {
             <div class="card-body text-center">
                 <h4 class="card-title">Registration form</h4>
                 <!-- Form kezdés -->
-                <form action="../controllers/register.php" method="POST">
+                <form action="../controllers/register.php" method="POST" data-parsley-validate id="regForm">
                     <!-- Floating label input, placeholder kötelező -->
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
                         <label for="email">Email address</label>
                     </div>
                     <!-- Floating label input, placeholder kötelező -->
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" name="username" id="username"
-                            placeholder="name@example.com">
+                            placeholder="name@example.com" data-parsley-minlength="10">
                         <label for="username">Username</label>
                     </div>
                     <!-- Password with hide and seen icon -->
@@ -143,6 +143,11 @@ try {
             passwordConfirmSeen = false;
         }
     }
+</script>
+
+<!-- Parsley -->
+<script>
+    $("#regForm").parsley();
 </script>
 
 

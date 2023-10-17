@@ -27,6 +27,9 @@ session_start();
     <!-- Fontawesome files -->
     <link rel="stylesheet" href="../assets/fontawesome/css/all.css">
     <script src="../assets/fontawesome/js/all.js"></script>
+
+    <!-- Parsley validator -->
+    <script src="../assets/scripts/parsley.js"></script>
 </head>
 
 <body>
