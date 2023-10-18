@@ -1,26 +1,126 @@
-<?php require '../layouts/header.php'; ?>
+<?php
+
+require '../layouts/header.php';
+require '../controllers/database.php';
+/* Lekérni az összes terméket, az összes adattal az adatbázisból és eltárolni egy result változóban. */
+
+/* Lekérdezés, vonatkozó inner joinnal ha van. */
+$query = "SELECT * FROM products";
+
+/* Where feltételek az első szűrés */
+if (isset($_GET["cat"]) && $_GET["cat"] != '#') {
+  $query = $query . " WHERE type = '" . $_GET["cat"] . "'";
+}
+
+/* Order by szerinti szűrés, mindig a végén */
+if (isset($_GET["filter"])) {
+  $query = $query . " ORDER BY price " . $_GET["filter"];
+}
+
+$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
+
+?>
 
 <div class="landing-video">
-    <video src="../assets/videos/landing.mp4" loop muted autoplay>
-    </video>
+  <video src="../assets/videos/landing.mp4" loop muted autoplay>
+  </video>
 </div>
 
 <div class="row">
-    <div class="col-3">
-        <div class="card border-primary m-3">
-          <img class="card-img-top img-fluid" src="../assets/images/placeholder.png" alt="Placeholder">
-          <div class="card-body">
-            <h4 class="card-title">Example title of product</h4>
-            <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt praesentium quas adipisci! Modi quidem aspernatur id eum dolorem. Eaque similique nihil non commodi quae minus sunt dignissimos, ullam totam rerum!</p>
-          </div>
-          <div class="mt-2 mb-2 text-center">
-            <form action="">
-                <input class="form-control" type="number" name="qty" id="qty" value="1">
-                <button class="mt-2 cartIcon"><i class="fa-solid fa-cart-shopping"></i></button>
-            </form>
-          </div>
-        </div>
+  <form action="#" method="GET">
+    <div class="row">
+      <div class="col-4">
+        <select name="filter" id="filter" class="form-select">
+          <option value="" selected disabled>Kérlek válassz</option>
+          <option value="asc">Ár szerint növekvő</option>
+          <option value="desc">Ár szerint csökkenő</option>
+        </select>
+      </div>
+      <div class="col-2">
+        <button type="submit" name="submit" class="btn btn-warning">Szűrés</button>
+        <input type="hidden" name="cat" value="<?php echo isset($_GET['cat']) ? $_GET['cat'] : "#" ?>">
+      </div>
     </div>
+  </form>
+</div>
+
+<div class="row">
+  <!-- A PHP kód beillesztése, ami egy while-lal amíg van sor a resultben, végigmegy és kiechozza a div class col-3at és tartalmát  -->
+
+  <?php
+
+  while ($row = mysqli_fetch_assoc($result)) {
+    echo '<div class="col-lg-3 col-md-4 col-sm-6">
+    <div class="card border-primary m-3">
+      <img class="card-img-top img-fluid" src="../assets/images/' . $row["picture"] . '" alt="Placeholder">
+      <div class="card-body">
+        <h4 class="card-title text-truncate">' . $row["name"] . '</h4>
+        <p class="card-text text-truncate">' . $row["description"] . '</p>
+          <p class="mt-1 text-center text-success">
+            Price: $' . $row["price"] . '
+          </p>
+      </div>
+      <div class="mt-2 mb-2 text-center">
+        <form action="">
+          <input class="form-control" type="number" name="qty" id="qty" value="1">
+          <button class="mt-2 cartIcon"><i class="fa-solid fa-cart-shopping"></i></button>
+          <input type="hidden" name="productId" id="productId" value="' . $row["id"] . '">
+        </form>
+      </div>
+    </div>
+  </div>';
+  }
+  ?>
+
+  <!--  -->
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="table-responsive">
+      <table class="table table-striped
+      table-hover	
+      table-borderless
+      table-warning
+      align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Id</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr>
+            <td scope="row">Item</td>
+            <td>Item</td>
+            <td>Item</td>
+            <td>Item</td>
+            <td>
+              <div class="row">
+                <div class="col-2">
+                  <form action="#" method="POST">
+                    <button class="actionButton"><i class="fa-solid fa-arrows-rotate me-3"></i></button>
+                  </form>
+                </div>
+                <div class="col-2">
+                  <form action="#" method="POST">
+                    <button class="actionButton" ><i class="fa-solid fa-trash"></i></button>
+                  </form>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4"> Össszesen: </td>
+            <td>$100 ($73 + VAT)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
 <?php require '../layouts/footer.php'; ?>

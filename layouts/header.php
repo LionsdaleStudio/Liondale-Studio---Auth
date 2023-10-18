@@ -62,9 +62,9 @@ session_start();
                             <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">Products</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownId">
-                                <a class="dropdown-item" href="#">POP figures</a>
-                                <a class="dropdown-item" href="#">Coffees</a>
-                                <a class="dropdown-item" href="#">Students for hire</a>
+                                <a class="dropdown-item" href="../views/index.php?cat=Funko">POP figures</a>
+                                <a class="dropdown-item" href="../views/index.php?cat=Coffee">Coffees</a>
+                                <a class="dropdown-item" href="../views/index.php?cat=Human">Students for hire</a>
                             </div>
                         </li>
                     </ul>

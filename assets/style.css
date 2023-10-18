@@ -79,6 +79,16 @@ video {
 -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
 }
 
+.card-img-top {
+    height: 250px;
+}
+
+.actionButton {
+    background-color: transparent;
+    border: none;
+}
+
+
 /* PARSLEY CSS */
 
 input.parsley-success,
@@ -115,5 +125,6 @@ textarea.parsley-error {
 .parsley-errors-list.filled {
     opacity: 1;
 }
+
 
 /* PARSLEY CSS END  */
