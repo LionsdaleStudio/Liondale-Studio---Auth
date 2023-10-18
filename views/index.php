@@ -61,9 +61,9 @@ $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
           </p>
       </div>
       <div class="mt-2 mb-2 text-center">
-        <form action="">
+        <form action="../controllers/cart.php" method="POST">
           <input class="form-control" type="number" name="qty" id="qty" value="1">
-          <button class="mt-2 cartIcon"><i class="fa-solid fa-cart-shopping"></i></button>
+          <button class="mt-2 cartIcon" name="submit" id="submit" type="submit"><i class="fa-solid fa-cart-shopping"></i></button>
           <input type="hidden" name="productId" id="productId" value="' . $row["id"] . '">
         </form>
       </div>
@@ -92,12 +92,19 @@ $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
             <th>Action</th>
           </tr>
         </thead>
-        <tbody class="table-group-divider">
-          <tr>
-            <td scope="row">Item</td>
-            <td>Item</td>
-            <td>Item</td>
-            <td>Item</td>
+        <tbody class="table-group-divider">ű
+
+          <!-- Sor eleje -->
+          <?php
+          $total = 0;
+          if (isset($_SESSION['cart'])) { /* Ha van a sessionben kosár */
+            foreach ($_SESSION['cart'] as $key => $product) { /* Akkor végigmegyek az összes elemén és megcsinálom a táblázat sorait */
+              $total += $product['qty'] * $product['price'];
+              echo '<tr>
+            <td scope="row">' . $product['id'] . '</td>
+            <td>' . $product['name'] . '</td>
+            <td><input type"number" value="' . $product['qty'] . '" class="form-control" name="cartQty"></td>
+            <td>' . $product['qty'] * $product['price'] . '</td>
             <td>
               <div class="row">
                 <div class="col-2">
@@ -107,15 +114,23 @@ $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
                 </div>
                 <div class="col-2">
                   <form action="#" method="POST">
-                    <button class="actionButton" ><i class="fa-solid fa-trash"></i></button>
+                    <button class="actionButton"><i class="fa-solid fa-trash"></i></button>
                   </form>
                 </div>
               </div>
             </td>
-          </tr>
+          </tr>';
+            }
+          }
+          ?>
+          <!-- Sor vége  -->
+
+          <!-- Összesen -->
           <tr>
             <td colspan="4"> Össszesen: </td>
-            <td>$100 ($73 + VAT)</td>
+            <td>
+              <?php echo "$" . $total . " - ($" . $total * 0.73 . " + VAT)" ?>
+            </td>
           </tr>
         </tbody>
       </table>
