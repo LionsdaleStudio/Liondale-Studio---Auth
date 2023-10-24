@@ -120,8 +120,6 @@ $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
                     <input type="hidden" name="productId" id="productId" value="' . $key . '">
                   </form>
                 </div>
-                <div class="col-2">
-              </div>
               </div>
             </td>
           </tr>';
@@ -140,7 +138,7 @@ $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
           <tr>
             <td colspan="4"></td>
             <td>
-              <a href="orderSummary" class="btn btn-outline-info">Rendelés véglegesítése</a>
+              <a href="orderSummary.php" class="btn btn-outline-info">Rendelés véglegesítése</a>
             </td>
           </tr>
         </tbody>
