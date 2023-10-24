@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Okt 17. 13:50
+-- Létrehozás ideje: 2023. Okt 24. 08:30
 -- Kiszolgáló verziója: 10.4.27-MariaDB
 -- PHP verzió: 8.2.0
 
@@ -501,11 +501,11 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `price`, `description`, `picture`, `type`) VALUES
-(1, 'Obi-Wan Kenobi', 50.99, 'The most powerful jedi ever', 'placeholder.png', 'Funko'),
-(2, 'Anakin Skywalker', 40.99, 'Didn\'t have the high-ground', 'placeholder.png', 'Funko'),
-(3, 'Black', 10.00, 'Strong like a big black man', 'placeholder.png', 'Coffee'),
-(4, 'Vanilla', 9.99, 'Strong like a little white kid', 'placeholder.png', 'Coffee'),
-(5, 'Csaba', 499.99, 'Hightech Regex Champion', 'placeholder.png', 'Human'),
+(1, 'Obi-Wan Kenobi', 50.99, 'The most powerful jedi ever', 'obiwan.png', 'Funko'),
+(2, 'Anakin Skywalker', 40.99, 'Didn\'t have the high-ground', 'anakin.png', 'Funko'),
+(3, 'Black', 10.00, 'Strong like a big black man', 'black.png', 'Coffee'),
+(4, 'Vanilla', 9.99, 'Strong like a little white kid', 'vanilla.png', 'Coffee'),
+(5, 'Csaba', 499.99, 'Hightech Regex Champion', 'csaba.png', 'Human'),
 (6, 'Csabi', 349.99, 'Lives like a remete', 'placeholder.png', 'Human');
 
 -- --------------------------------------------------------
